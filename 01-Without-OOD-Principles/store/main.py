@@ -23,20 +23,28 @@ def build_demo_orders():
                OrderItem(4, "Pragmatic Programmer", 40.00, 2)],
     )
 
+    headphones = Order(
+        id=104, customer=regular, payment_method="cash",
+        items=[OrderItem(5, "Headphones", 79.99, 1)],
+    )
+
     bundle = BundleOrder(id=103, customer=vip, orders=[laptop, books])
     bundle.payment_method = "credit_card"
-    return laptop, books, bundle
+    return laptop, books, bundle, headphones
 
 
 def main() -> None:
     service = OrderService()
-    laptop, books, bundle = build_demo_orders()
+    laptop, books, bundle, headphones = build_demo_orders()
 
     print(">>> Checkout a simple order")
     service.process_order(laptop)
 
     print("\n>>> Checkout a bundle of two orders")
     service.process_order(bundle)
+
+    print("\n>>> Checkout a cash payment order")
+    service.process_order(headphones)
 
 
 if __name__ == "__main__":
