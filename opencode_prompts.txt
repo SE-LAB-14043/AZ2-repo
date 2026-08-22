@@ -1,0 +1,542 @@
+Analyze this project as it currently exists.
+
+Do not modify any files.
+
+I am doing a Software Engineering lab about SOLID principles.
+
+First:
+1. Explain the overall architecture of the project.
+2. Identify the main classes, interfaces, and their responsibilities.
+3. Identify the main execution flow.
+4. Identify where payment-related logic currently exists.
+5. Identify potential violations of each SOLID principle:
+   - SRP
+   - OCP
+   - LSP
+   - ISP
+   - DIP
+
+For every suspected violation:
+- give the exact file/class/method
+- explain why it may violate the principle
+- do NOT refactor it yet
+- distinguish between a definite violation and a possible/design-smell
+
+Do not modify any files.
+
+
+
+
+افزودن قابلیت پرداخت نقدی:
+We need to add a new payment method to the existing project:
+
+Payment method: cash
+
+This is the FIRST implementation of the feature, before any SOLID refactoring.
+
+IMPORTANT CONSTRAINTS:
+
+1. Do NOT refactor the existing architecture.
+2. Do NOT fix SOLID violations.
+3. Do NOT introduce payment interfaces or strategy patterns.
+4. Keep the existing design as much as possible.
+5. Implement Cash Payment consistently with the existing payment methods.
+
+Before changing anything:
+
+1. Identify every file/class/method that needs to be changed.
+2. Explain why each change is necessary.
+3. Identify whether any existing tests or demo code need to be updated.
+4. Estimate the scope of the changes.
+
+Then STOP and wait for my approval.
+
+Do not modify any files yet.
+
+
+
+The proposed changes are approved.
+
+Plese implement exactly the proposed changes:
+
+1. Add the cash payment branch to payment.py.
+2. Add a cash demo order to main.py so the new payment method can be tested.
+
+Do not refactor anything.
+Do not modify any other files.
+Do not introduce new classes or abstractions.
+
+After making the changes:
+1. show me the diff.
+2. Run the project.
+3. Verify that the cash payment path works.
+4. Report the test result.
+
+
+
+
+آنالیزSOLID:
+Now analyze the current codebase after adding Cash Payment.
+
+Do not modify any files.
+
+Analyze all five SOLID principles:
+
+1. SRP
+2. OCP
+3. LSP
+4. ISP
+5. DIP
+
+For each principle provide:
+
+- Is it violated?
+- Exact file/class/method
+- Evidence from the code
+- Why it violates the principle
+- Severity/importance
+- A suitable refactoring strategy
+- Why that refactoring is appropriate
+
+Do not make any changes.
+
+
+------------------------------------------------------------------
+
+تعریف اسکیل:
+---
+name: solid-review
+description: Analyze a Python project for SOLID principle violations, explain the evidence, propose appropriate refactoring strategies, and apply changes only after explicit user approval.
+---
+
+# SOLID Review Skill
+
+## Purpose
+
+Analyze the current Python codebase for violations of the five SOLID principles:
+
+- Single Responsibility Principle (SRP)
+- Open/Closed Principle (OCP)
+- Liskov Substitution Principle (LSP)
+- Interface Segregation Principle (ISP)
+- Dependency Inversion Principle (DIP)
+
+The goal is to provide evidence-based analysis and safe refactoring recommendations rather than blindly modifying the code.
+
+## General Rules
+
+1. Do not modify files during the analysis phase.
+2. Inspect the actual source code before making conclusions.
+3. Never claim that a SOLID principle is violated without identifying concrete evidence.
+4. Distinguish between:
+   - definite violation
+   - possible violation
+   - design smell that is not necessarily a SOLID violation
+5. Prefer simple refactoring solutions over unnecessary abstractions.
+6. Preserve existing application behavior.
+7. Do not introduce changes unrelated to SOLID refactoring.
+8. Before applying any modification, present the proposed changes and ask the user for explicit approval.
+9. After applying changes, run the project's available tests or validation commands.
+10. Report any failed tests or unexpected behavior.
+
+## Analysis Process
+
+When asked to analyze the project:
+
+### Step 1: Inspect the project
+
+Identify:
+
+- main modules
+- classes
+- methods
+- inheritance relationships
+- dependencies
+- external infrastructure
+- major execution flows
+
+Do not modify files.
+
+### Step 2: Analyze SRP
+
+For each important class:
+
+- identify its responsibilities
+- determine whether it has more than one reason to change
+- identify unrelated responsibilities
+- provide the exact class and methods involved
+
+Example categories include:
+
+- validation
+- business logic
+- persistence
+- payment processing
+- notification
+- presentation/output
+
+### Step 3: Analyze OCP
+
+Look for code where adding a new behavior requires modifying existing conditional logic.
+
+Pay particular attention to:
+
+- if/elif chains
+- switch-like logic
+- type checks
+- payment methods
+- notification types
+- business rules
+
+For every finding explain:
+
+- what new feature would require modification
+- which existing code would have to change
+- how polymorphism or another design technique could improve the design
+
+### Step 4: Analyze LSP
+
+Inspect inheritance relationships.
+
+For every subclass determine whether it can safely replace its parent.
+
+Look for:
+
+- methods that raise NotImplementedError
+- overridden methods with incompatible behavior
+- strengthened preconditions
+- weakened postconditions
+- subclasses that cannot perform operations expected from the parent
+
+Provide a concrete example showing why substitution would fail.
+
+### Step 5: Analyze ISP
+
+Inspect interfaces, base classes, and public APIs.
+
+Look for clients or subclasses that depend on methods they do not actually need.
+
+If the project does not explicitly use interfaces, identify class APIs that effectively act as interfaces.
+
+Do not invent an ISP violation merely because a class has multiple methods.
+
+### Step 6: Analyze DIP
+
+Inspect dependencies between high-level business logic and low-level implementations.
+
+Look for:
+
+- direct instantiation of concrete dependencies
+- imports of infrastructure classes into business logic
+- business classes tightly coupled to databases
+- business classes tightly coupled to external services
+
+Explain how abstractions and dependency injection could improve the design.
+
+## Output Format
+
+For every identified issue use this format:
+
+### [Principle] — [Class/File]
+
+**Status:** Definite violation / Possible violation / No violation
+
+**Evidence:**
+- File:
+- Class:
+- Method:
+- Relevant behavior:
+
+**Why it violates the principle:**
+
+Explain the reasoning based on the actual code.
+
+**Impact:**
+
+Explain how the design affects maintainability, extensibility, or testing.
+
+**Recommended refactoring:**
+
+Describe the proposed solution without modifying files.
+
+**Why this solution:**
+
+Explain why this approach is preferable to alternatives.
+
+## Refactoring Process
+
+When the user asks to refactor:
+
+1. Re-check the relevant source code.
+2. Create a detailed refactoring plan.
+3. List every file that will be changed.
+4. Explain the purpose of each change.
+5. Identify possible risks.
+6. Ask the user for explicit approval.
+7. Do not modify anything before approval.
+
+After approval:
+
+1. Apply the approved changes only.
+2. Avoid unrelated modifications.
+3. Run available tests.
+4. Run the application if practical.
+5. Report changed files.
+6. Report test results.
+7. Report any remaining SOLID concerns.
+
+## Important Constraint
+
+Do not refactor merely to demonstrate SOLID.
+
+A change should only be proposed when:
+
+- there is concrete evidence of a design problem,
+- the refactoring provides a meaningful benefit,
+- and the resulting design remains understandable and maintainable.
+
+
+
+
+
+
+
+Use the solid-review skill to analyze this project.
+
+Do not modify any files.
+
+Analyze all five SOLID principles:
+SRP, OCP, LSP, ISP, DIP.
+
+For every finding:
+- identify the exact file and class
+- provide concrete evidence
+- explain why it is or is not a violation
+- classify it as definite violation, possible violation, or no violation
+- propose a suitable refactoring
+- explain why the proposed refactoring is appropriate
+
+Pay special attention to the current payment implementation and the recently added cash payment.
+
+At the end, provide a summary table of all SOLID findings.
+
+
+
+
+plan:
+Using the SOLID analysis and the solid-review skill, create a detailed refactoring plan.
+
+Requirements:
+
+1. Fix only genuine SOLID violations.
+2. Preserve existing behavior.
+3. Do not introduce unnecessary abstractions.
+4. For every proposed change specify:
+   - file/class
+   - current problem
+   - SOLID principle involved
+   - refactoring technique
+   - expected result
+   - possible risks
+5. Keep the plan incremental so the project can be tested after each major change.
+6. Do not modify any files.
+
+At the end, provide the final ordered implementation plan. 
+
+
+
+build:
+Implement Step 1 of the approved refactoring plan only.
+
+Before making changes:
+1. Inspect the current state of the repository.
+2. Confirm the relevant code in models.py and order_service.py.
+3. Do not implement Steps 2-5 yet.
+
+Implement only the BundleOrder LSP fix:
+- Add subtotal aggregation to BundleOrder.
+- Add item_count aggregation to BundleOrder.
+- Remove the isinstance(BundleOrder) workaround from OrderService validation.
+- Preserve all other behavior.
+
+After making the changes:
+1. Show me the files changed.
+2. Show the exact diff.
+3. Run:
+   python -m store.main
+4. Explain whether the output matches the expected Step 1 output.
+5. Do not modify any other unrelated files.
+
+
+
+Implement Step 2 of the approved refactoring plan only.
+
+Before making changes, inspect the current notification.py and order_service.py.
+
+Implement only the Notification ISP + LSP refactoring:
+- Remove the fat NotificationService abstraction.
+- Remove SmsOnlyNotifier inheritance.
+- Introduce separate EmailSender, SmsSender, and PushSender abstractions.
+- Keep the shared Protocol definitions in store/protocols.py to avoid duplicate definitions.
+- Create ConsoleEmailSender, ConsoleSmsSender, and ConsolePushSender concrete implementations.
+- Update OrderService to use separate email_sender and sms_sender dependencies.
+- Do not implement Steps 3, 4, or 5 yet.
+- Do not modify payment.py or pricing.py.
+
+After implementation:
+1. Show the exact files changed.
+2. Show the git diff.
+3. Run `python -m store.main`.
+4. Verify that the notification output is unchanged.
+5. Check that the Step 1 Bundle output remains:
+   Subtotal $1194.99
+   Discount -$239.00
+   TOTAL $955.99
+6. Do not modify unrelated files.
+
+
+
+Step 3 — Fix the OCP violation in the payment system.
+
+Refactor `payment.py` using the Strategy Pattern + registry.
+
+- Create `PaymentStrategy` Protocol in `store/protocols.py`.
+- Create separate strategies for the existing payment methods:
+  - `CreditCardPayment`
+  - `PaypalPayment`
+  - `BitcoinPayment`
+- Rewrite `PaymentProcessor` to dispatch through a dictionary/registry instead of the current if/elif chain.
+- Preserve the existing behavior and `PaymentProcessor.process(order, amount)` API.
+- Keep the current error for unknown payment methods.
+
+IMPORTANT:
+Cash payment was intentionally removed after the initial feature-addition phase.
+DO NOT add `CashPayment` or any cash-related code in this step.
+Cash will be added again only after all SOLID refactoring is finished.
+
+Do not modify unrelated files.
+
+After the changes, run:
+`python -m store.main`
+
+Explain which files changed, how OCP was fixed, and whether the existing output is unchanged.
+Do not proceed to Step 4.
+
+
+
+Step 4 — Fix the OCP violation in the discount system.
+
+Refactor `pricing.py` using the Strategy/Rule pattern.
+
+- Add a `DiscountRule` Protocol to `store/protocols.py`.
+- Create separate discount rules:
+  - `VipDiscount`
+  - `BulkDiscount`
+  - `CouponDiscount`
+- Refactor `DiscountCalculator` so it uses a list of rules instead of the current if/elif chain.
+- Preserve the existing priority: VIP > bulk > coupon.
+- Preserve the existing `calculate(order) -> float` API and behavior.
+- Do not add any new discount type.
+- Do not modify unrelated files.
+- Do not add cash payment; cash will only be added after all SOLID refactoring is complete.
+
+Run:
+`python -m store.main`
+
+Verify that the output remains unchanged.
+
+Explain which files changed and how this fixes OCP.
+Do not proceed to Step 5.
+
+
+Step 5 — Fix DIP + SRP in OrderService.
+
+Refactor `order_service.py` according to the SOLID plan.
+
+Requirements:
+
+1. Use constructor dependency injection instead of directly creating concrete dependencies inside `OrderService`.
+
+2. Use the existing Protocols in `store/protocols.py` and add:
+   - `EmailSender`
+   - `SmsSender`
+   - `OrderStorage`
+
+   Keep all shared Protocols in `store/protocols.py`.
+
+3. Update `notification.py` so `EmailSender` and `SmsSender` are imported from `store.protocols` instead of being defined there.
+   Keep the concrete implementations:
+   - `ConsoleEmailSender`
+   - `ConsoleSmsSender`
+   - `ConsolePushSender`
+
+4. Refactor `OrderService.process_order()` to remove its separate responsibilities.
+
+Extract:
+   - `validate_order(order)`
+   - `PricingEngine`
+   - `ReceiptPrinter`
+
+`process_order()` should become a thin orchestrator that:
+   validate → calculate price → process payment → save → notify → print receipt.
+
+5. Use constructor injection with backward-compatible defaults, so this still works:
+
+   service = OrderService()
+
+6. Preserve the existing public behavior and output.
+
+7. Do NOT add cash payment.
+   Cash was intentionally removed and must only be re-added after all SOLID refactoring is complete.
+
+8. Do not modify unrelated functionality.
+
+After the refactoring:
+
+   python -m store.main
+
+Verify that the output remains:
+
+Order 101:
+total $819.99
+
+Bundle 103:
+total $955.99
+
+Explain:
+- which files changed
+- how DIP was improved
+- how SRP was improved
+- whether the output remained unchanged
+
+Do not add the cash payment and do not proceed to any new feature.
+
+
+
+
+افزودن مجدد قابلیت پرداخت نقدی:
+Now add the cash payment feature back to the refactored project.
+
+Requirements:
+- Add a CashPayment strategy using the existing PaymentStrategy abstraction.
+- Register "cash" in PaymentProcessor.
+- Do not modify OrderService or existing payment strategies.
+- Update main.py to include a cash-payment demo order.
+- Preserve all existing behavior and output.
+- Run python -m store.main and show the final output.
+- Briefly list the files changed and explain why adding cash is easier after the SOLID refactoring.
+
+
+
+مقایسه دو نسخه:
+Compare adding the cash payment feature in the original version versus the SOLID-refactored version.
+
+Focus only on:
+- files changed
+- code locations changed
+- number/type of changes
+- whether existing classes/methods had to be modified
+- how SOLID affected the effort
+
+Give a concise comparison table and a short conclusion suitable for the lab report.
+Do not modify any files.
