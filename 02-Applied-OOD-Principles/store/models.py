@@ -48,3 +48,11 @@ class BundleOrder(Order):
     def __init__(self, id: int, customer: Customer, orders: List[Order]):
         super().__init__(id=id, customer=customer, items=[])
         self.orders = orders
+
+    @property
+    def subtotal(self) -> float:
+        return round(sum(o.subtotal for o in self.orders), 2)
+
+    @property
+    def item_count(self) -> int:
+        return sum(o.item_count for o in self.orders)
