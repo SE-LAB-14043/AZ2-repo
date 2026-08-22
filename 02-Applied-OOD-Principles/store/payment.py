@@ -23,12 +23,19 @@ class BitcoinPayment:
         return f"paid_by_bitcoin:{amount:.2f}"
 
 
+class CashPayment:
+    def process(self, order: Order, amount: float) -> str:
+        print(f"[payment] Cash payment of {amount:.2f}")
+        return f"paid_by_cash:{amount:.2f}"
+
+
 class PaymentProcessor:
     def __init__(self):
         self._strategies: dict[str, PaymentStrategy] = {
             "credit_card": CreditCardPayment(),
             "paypal": PaypalPayment(),
             "bitcoin": BitcoinPayment(),
+            "cash": CashPayment(),
         }
 
     def process(self, order: Order, amount: float) -> str:
